@@ -9,3 +9,8 @@ This application should:
 - A habit entry page
 - A habit dashboard for displaying statistics
 - A habit history page
+
+### The Habit Entry Page
+This should show the user:
+- A list of habits to track
+    - For each habit in the list, an edit button and a save button should be present

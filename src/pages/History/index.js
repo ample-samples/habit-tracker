@@ -1,3 +1,5 @@
+import HabitEntry from '../../pages/HabitEntry'
+
 export default function History () {
   return (
     <>

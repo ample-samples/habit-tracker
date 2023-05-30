@@ -1,0 +1,11 @@
+{
+  "habits": [
+    {
+      "id": 0,
+      "date": "2023-05-30",
+      "meditation": "14",
+      "calories": "1",
+      "sleep": "22"
+    }
+  ]
+}

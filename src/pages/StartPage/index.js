@@ -1,9 +1,9 @@
-import HabitEntry from '../../components/HabitEntry'
+import HabitEntry from '../../pages/HabitEntry'
 
 export default function StartPage() {
   return (
     <>
-      <HabitEntry date={'today'}/>
+      <p>Please select a page</p>
     </>
   )
 }
