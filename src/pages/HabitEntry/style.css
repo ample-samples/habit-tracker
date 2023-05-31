@@ -1,8 +1,12 @@
-* {
-  margin: 5px;
-}
-
 .form {
   display: grid;
   grid-template-columns: 200px 70px;
+}
+
+.form > * {
+  margin-top:10px;
+}
+
+.form > button {
+  width: 80%;
 }

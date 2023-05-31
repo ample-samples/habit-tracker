@@ -56,15 +56,16 @@ export default function HabitEntry () {
 
   return (
     <>
-      <h1>Habits for {params.date}</h1>
-
-      <form onChange={handleChange} onSubmit={handleSubmit} className="form">
-        {console.log(formData)}
-      <label htmlFor="sleep">Sleep (hrs)</label><input type="text" name="sleep" id="sleep" placeholder={formData ? (formData.sleep) : '0'} />
-        <label htmlFor="calories">Calories (kcal)</label><input type="text" name="calories" id="calories" placeholder={formData ? (formData.calories) : '0'} />
-        <label htmlFor="meditation">Meditation (mins)</label><input type="text" name="meditation" id="meditation" placeholder={formData ? (formData.meditation) : '0'} />
-        <button type="submit">Submit</button>
-      </form>
+      <div className="habit-page">
+        <h1>Habits for {params.date}</h1>
+        
+        <form onChange={handleChange} onSubmit={handleSubmit} className="form">
+          <label htmlFor="sleep">Sleep (hrs)</label><input type="text" name="sleep" id="sleep" placeholder={formData ? (formData.sleep) : '0'} />
+          <label htmlFor="calories">Calories (kcal)</label><input type="text" name="calories" id="calories" placeholder={formData ? (formData.calories) : '0'} />
+          <label htmlFor="meditation">Meditation (mins)</label><input type="text" name="meditation" id="meditation" placeholder={formData ? (formData.meditation) : '0'} />
+          <button type="submit">Accept</button>
+        </form>
+      </div>
     </>
   )
 }

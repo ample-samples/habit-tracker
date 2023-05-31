@@ -1,0 +1,12 @@
+.navbar {
+  padding: 10px 10px 0 10px;
+  background-color: #ccc;
+  display: grid;
+  justify-items: center;
+  grid-template-rows: 50px repeat(3, 30px);
+}
+
+.navbar button {
+  margin-top: 5px;
+  width: 100%;
+}

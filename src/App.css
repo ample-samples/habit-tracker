@@ -1,5 +1,9 @@
 .App {
-  font-family: sans-serif
+  font-family: sans-serif;
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  grid-template-rows: 100vh;
+  column-gap: 10px;
 }
 
 .App-logo {
