@@ -8,8 +8,9 @@ const habits = await fetch(`${domain}/habits`).then(response => {
 })
 
 export default function HabitEntry () {
+  const params = useParams()
 
-  const todaysHabits = habits.find((item) => item.date === new Date().toISOString().slice(0, 10))
+  const todaysHabits = habits.find((item) => item.date === params.date )
   console.log({ todaysHabits })
   const [ formData, setFormData ] = useState(todaysHabits)
 
@@ -19,7 +20,6 @@ export default function HabitEntry () {
     })
   }
 
-  const params = useParams()
 
   const handleChange = (e) => {
     console.log("Starting change")

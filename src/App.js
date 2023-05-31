@@ -10,12 +10,14 @@ import HabitEntry from './pages/HabitEntry';
 function App() {
   return (
     <>
-      <Navbar/ >
-      <Routes>
-        <Route path='/' element={<Dashboard />} />
-        <Route path='/history' element={<History />} />
-        <Route path='/habit/:date' element={<HabitEntry date={new Date().toISOString().slice(0, 10)} />}/>
-      </Routes>
+      <div className="App">
+        <Navbar/ >
+        <Routes>
+          <Route path='/' element={<Dashboard />} />
+          <Route path='/history' element={<History />} />
+          <Route path='/habit/:date' element={<HabitEntry date={new Date().toISOString().slice(0, 10)} />}/>
+        </Routes>
+      </div>
     </>
   );
 }
