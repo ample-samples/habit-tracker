@@ -13,12 +13,13 @@ export default function HabitEntry () {
   console.log({ todaysHabits })
   const [ formData, setFormData ] = useState(todaysHabits)
 
+  if (!formData) {
+    setFormData({
+      date: new Date().toISOString().slice(0, 10),
+    })
+  }
 
   const params = useParams()
-
-  useEffect(() => {
-
-  })
 
   const handleChange = (e) => {
     console.log("Starting change")
@@ -35,13 +36,22 @@ export default function HabitEntry () {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const options = {
-      headers: { 'Content-Type': 'application/json' },
-      method: 'PATCH',
-      body: JSON.stringify(formData.habits)
-    }
 
-    const res = await fetch(`${domain}/habits/${todaysHabits.id}`, options)
+    if (todaysHabits) {
+      const options = {
+        headers: { 'Content-Type': 'application/json' },
+        method: 'PATCH',
+        body: JSON.stringify(formData.habits)
+      }
+      const res = await fetch(`${domain}/habits/${todaysHabits.id}`, options)
+    } else {
+      const options = {
+        headers: { 'Content-Type': 'application/json' },
+        method: 'POST',
+        body: JSON.stringify({ ...formData.habits, date: new Date().toISOString().slice(0, 10)})
+      }
+      const res = await fetch(`${domain}/habits/`, options)
+    }
   }
 
   return (
@@ -50,9 +60,9 @@ export default function HabitEntry () {
 
       <form onChange={handleChange} onSubmit={handleSubmit} className="form">
         {console.log(formData)}
-        <label for="sleep">Sleep (hrs)</label><input type="text" name="sleep" id="sleep" placeholder={formData.sleep} />
-        <label for="calories">Calories (kcal)</label><input type="text" name="calories" id="calories" placeholder={formData.calories} />
-        <label for="meditation">Meditation (mins)</label><input type="text" name="meditation" id="meditation" placeholder={formData.meditation} />
+      <label htmlFor="sleep">Sleep (hrs)</label><input type="text" name="sleep" id="sleep" placeholder={formData ? (formData.sleep) : '0'} />
+        <label htmlFor="calories">Calories (kcal)</label><input type="text" name="calories" id="calories" placeholder={formData ? (formData.calories) : '0'} />
+        <label htmlFor="meditation">Meditation (mins)</label><input type="text" name="meditation" id="meditation" placeholder={formData ? (formData.meditation) : '0'} />
         <button type="submit">Submit</button>
       </form>
     </>

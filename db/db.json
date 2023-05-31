@@ -6,6 +6,13 @@
       "meditation": "14",
       "calories": "1",
       "sleep": "22"
+    },
+    {
+      "sleep": "1",
+      "calories": "5",
+      "meditation": "6",
+      "date": "2023-05-31",
+      "id": 1
     }
   ]
 }

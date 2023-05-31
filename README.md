@@ -13,4 +13,12 @@ This application should:
 ### The Habit Entry Page
 This should show the user:
 - A list of habits to track
-    - For each habit in the list, an edit button and a save button should be present
+    - Each habit should be editable by the user
+
+### The Habit Dashboard
+This should show the user:
+- Useful habit statistics
+
+### The Habit History Page
+This should show the user:
+- The most recent habit entries
