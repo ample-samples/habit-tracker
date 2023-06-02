@@ -44,8 +44,12 @@
   background-color: var(--gunmetal)
 }
 
-h1, h2, p, div, span, button, a {
+h2, p, div, span, button, a {
   color: var(--light-orange)
+}
+
+h1 {
+  color: var(--lavender-blush)
 }
 
 

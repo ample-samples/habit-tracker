@@ -1,5 +1,6 @@
 import { useState, useEffect } from'react'
 import '../../App.css'
+import './style.css'
 
 export default function Dashboard() {
 
@@ -44,17 +45,29 @@ export default function Dashboard() {
     return sum/count
   }
 
+  const getCalorieAverage = () => {
+    let sum = 0
+    let count = 0
+    for (let i = 0; i < 7; i++) {
+      if(habits[i]) {
+        sum += Number(habits[i].calories)
+        count++
+      }
+    }
+    return sum/count
+  }
+
   return (
     <>
       <div className="dashboard">
         <h1>Dashboard</h1>
         <h2>Welcome back!</h2>
         <h3>Average daily calories</h3>
-        <p>At least 1</p>
-        <h3>Average this week</h3>
-        <p>{getStepsAverage()} steps</p>
+        <p><span className="entry-value">{getCalorieAverage()}</span> kcal</p>
+        <h3>Average steps this week</h3>
+        <p><span className="entry-value">{getStepsAverage()}</span> steps</p>
         <h3>Average sleep this week</h3>
-        <p>{getSleepAverage()} hours</p>
+        <p><span className="entry-value">{getSleepAverage()}</span> hours</p>
       </div>
     </>
   )
