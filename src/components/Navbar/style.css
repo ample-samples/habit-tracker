@@ -3,7 +3,8 @@
   background-color: #ccc;
   display: grid;
   justify-items: center;
-  grid-template-rows: 50px repeat(3, 30px);
+  grid-template-rows: 50px repeat(3, 50px);
+  background-color: var(--lion);
 }
 
 .navbar button {

@@ -63,6 +63,7 @@ export default function HabitEntry () {
           <label htmlFor="sleep">Sleep (hrs)</label><input type="text" name="sleep" id="sleep" placeholder={formData ? (formData.sleep) : '0'} />
           <label htmlFor="calories">Calories (kcal)</label><input type="text" name="calories" id="calories" placeholder={formData ? (formData.calories) : '0'} />
           <label htmlFor="meditation">Meditation (mins)</label><input type="text" name="meditation" id="meditation" placeholder={formData ? (formData.meditation) : '0'} />
+          <label htmlFor="steps">Steps (count)</label><input type="text" name="steps" id="steps" placeholder={formData ? (formData.steps) : '0'} />
           <button type="submit">Accept</button>
         </form>
       </div>

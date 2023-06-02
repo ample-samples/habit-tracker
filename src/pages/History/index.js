@@ -1,13 +1,26 @@
-import HabitEntry from '../../pages/HabitEntry'
+import { useState, useEffect } from'react'
 import { useNavigate } from'react-router-dom'
 import './style.css'
 
-const domain = process.env.REACT_APP_DB_DOMAIN
-const habits = await fetch(`${domain}/habits`).then(response => {
-  return response.json()
-})
 
-export default function History () {
+export default function History() {
+  const [ habits, setHabits ] = useState([])
+
+  async function getHabits() {
+    const domain = process.env.REACT_APP_DB_DOMAIN
+    const newHabits = await fetch(`${domain}/habits`).then(response => {
+      const res = response.json()
+      return res
+    })
+    setHabits(newHabits)
+  }
+
+  useEffect(() => {
+    getHabits()
+  }, [])
+
+
+
   const navigate = useNavigate()
 
   const handleEdit = (e) => {
@@ -24,10 +37,11 @@ export default function History () {
         <div className="habit-entries">
           {habits.map((habitEntry) => 
             <>
-              <span>{habitEntry.date}</span>
+              <span className="date">{habitEntry.date}</span>
               <span>Sleep 🛏 (hrs): <span className="entry-value">{habitEntry.sleep}</span></span>
               <span>Calories 🍴 (kcal): <span className="entry-value">{habitEntry.calories}</span></span>
               <span>Meditation ☯ (mins): <span className="entry-value">{habitEntry.meditation}</span></span>
+              <span>Steps 👟 (count): <span className="entry-value">{habitEntry.steps}</span></span>
               <button type='submit' name={habitEntry.date} onClick={handleEdit}>Edit</button>
             </>
           )}

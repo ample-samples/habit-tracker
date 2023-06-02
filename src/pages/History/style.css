@@ -1,9 +1,13 @@
 .habit-entries {
-  max-width: 800px;
+  max-width: 1000px;
   display: grid;
-  grid-template-columns: repeat(5, auto);
+  grid-template-columns: repeat(6, auto);
 }
 
 .entry-value {
-  color: #666;
+  color: var(--wisteria);
+}
+
+.date {
+  color: var(--lavender-blush)
 }
