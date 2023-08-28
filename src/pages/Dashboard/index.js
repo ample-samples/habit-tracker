@@ -8,8 +8,10 @@ export default function Dashboard() {
 
   async function getHabits() {
     const domain = process.env.REACT_APP_DB_DOMAIN
-    const newHabits = await fetch(`${domain}/habits`).then(response => {
-      const res = response.json()
+    const newHabits = await fetch(`${domain}/habits`)
+    .then(async response =>  {
+      const res = await response.json()
+        console.log(res)
       return res
     })
     newHabits.sort((a, b) => a.date < b.date ? 1 : -1 )
@@ -25,7 +27,7 @@ export default function Dashboard() {
     let sum = 0
     let count = 0
     for (let i = 0; i < 7; i++) {
-      if(habits[i]) {
+      if(habits[i]&&habits[i].sleep) {
         sum += Number(habits[i].sleep)
         count++
       }
@@ -37,7 +39,7 @@ export default function Dashboard() {
     let sum = 0
     let count = 0
     for (let i = 0; i < 7; i++) {
-      if(habits[i]) {
+      if(habits[i]&&habits[i].steps) {
         sum += Number(habits[i].steps)
         count++
       }
@@ -49,7 +51,7 @@ export default function Dashboard() {
     let sum = 0
     let count = 0
     for (let i = 0; i < 7; i++) {
-      if(habits[i]) {
+      if(habits[i]&&habits[i].calories) {
         sum += Number(habits[i].calories)
         count++
       }

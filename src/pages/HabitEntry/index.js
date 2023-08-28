@@ -41,14 +41,14 @@ export default function HabitEntry () {
       const options = {
         headers: { 'Content-Type': 'application/json' },
         method: 'PATCH',
-        body: JSON.stringify(formData.habits)
+        body: JSON.stringify({ ...formData.habits, date: new Date().toISOString().slice(0, 10), userId: 1 })
       }
-      const res = await fetch(`${domain}/habits/${todaysHabits.id}`, options)
+      const res = await fetch(`${domain}/habits/`, options)
     } else {
       const options = {
         headers: { 'Content-Type': 'application/json' },
         method: 'POST',
-        body: JSON.stringify({ ...formData.habits, date: new Date().toISOString().slice(0, 10)})
+        body: JSON.stringify({ ...formData.habits, date: new Date().toISOString().slice(0, 10), userId: 1})
       }
       const res = await fetch(`${domain}/habits/`, options)
     }
