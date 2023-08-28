@@ -2,7 +2,7 @@ import {useNavigate} from 'react-router-dom';
 import './style.css'
 import journal from '../../assets/journal.png'
 
-export default function Navbar() {
+export default function Navbar({ isLoggedIn }) {
 
   const navigate = useNavigate();
 
