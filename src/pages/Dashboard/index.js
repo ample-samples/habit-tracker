@@ -11,10 +11,10 @@ export default function Dashboard() {
     const newHabits = await fetch(`${domain}/habits`)
     .then(async response =>  {
       const res = await response.json()
-        console.log(res)
       return res
     })
     newHabits.sort((a, b) => a.date < b.date ? 1 : -1 )
+    console.log({newHabits})
     setHabits(newHabits)
   }
 
