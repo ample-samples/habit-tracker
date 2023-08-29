@@ -1,18 +1,16 @@
 import './App.css';
-import StartPage from './pages/StartPage';
-import { Routes, Route } from'react-router-dom';
+import { Routes, Route, Redirect } from'react-router-dom';
 import History from './pages/History';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Navbar from './components/Navbar';
 import HabitEntry from './pages/HabitEntry';
 import Footer from './components/Footer';
-import { AuthProvider } from "./context/auth";
 
 import { useState, useEffect } from'react'
 
 function App() {
-  const [ isLoggedIn, setIsLoggedIn ] = useState(true)
+  const [ isLoggedIn, setIsLoggedIn ] = useState(false)
 
   if(isLoggedIn){
     return (
@@ -35,10 +33,8 @@ function App() {
       <>
         <div className="App">
             <div className="login">
-              <Routes>
-                <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-              </Routes>
-            </div>
+              <Login setIsLoggedIn={setIsLoggedIn} />            
+          </div>
         </div>
       </>
     );

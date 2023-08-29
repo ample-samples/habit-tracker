@@ -4,6 +4,6 @@ import './style.css'
 
 export default function Login () {
   return(
-  <p>Hello</p>
+    <p>Hello</p>
   )
 }
