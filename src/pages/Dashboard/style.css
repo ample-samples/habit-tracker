@@ -1,3 +1,8 @@
 .entry-value {
   color: var(--wisteria);
 }
+
+canvas {
+  max-width: 700px;
+  max-height: 400px;
+}
