@@ -17,8 +17,29 @@ export default function Login () {
     setShowLoginPage(true)
   }
 
+const validateEmail = (email) => {
+
+  const validEmail = email.toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    )
+    if (validEmail) {
+      return true
+    } else {
+      alert("Please enter a valid email address")
+      return false
+    }
+}
+
   const registerUser = (e) => {
     e.preventDefault()
+    const email = e.target.form[0].value
+    const password = e.target.form[1].value
+    const repeatPassword = e.target.form[2].value
+
+    if (!validateEmail(email)) return false 
+
+
   }
 
   const loginUser = (e) => {
@@ -74,7 +95,7 @@ export default function Login () {
               <input type="password" name="confirm-password" id="password-repeat" />
             </label>
             <br />
-            <button>Register</button>
+            <button onClick={registerUser}>Register</button>
           </form>
           <p>Have an account?</p>
           <button onClick={setToLogin}>Login</button>

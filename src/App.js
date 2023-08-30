@@ -10,7 +10,15 @@ import Footer from './components/Footer';
 import { useState, useEffect } from'react'
 
 function App() {
+
   const [ isLoggedIn, setIsLoggedIn ] = useState(false)
+
+  const checkToken = () => {
+    const tokenIsValid = null
+    if (tokenIsValid) {
+      setIsLoggedIn(true)
+    }
+  }
 
   if(isLoggedIn){
     return (
