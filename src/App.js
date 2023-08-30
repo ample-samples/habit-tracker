@@ -12,6 +12,7 @@ import { useState, useEffect } from'react'
 function App() {
 
   const [ isLoggedIn, setIsLoggedIn ] = useState(false)
+  const [ user, setUser ] = useState({name: undefined, email: undefined})
 
   const checkToken = () => {
     const tokenIsValid = null
@@ -27,9 +28,9 @@ function App() {
           <Navbar />
           <div className="main">
             <Routes>
-              <Route path='/' element={<Dashboard />} />
-              <Route path='/history' element={<History />} />
-              <Route path='/habit/:date' element={<HabitEntry date={new Date().toISOString().slice(0, 10)} />}/>
+              <Route path='/' element={<Dashboard user={user} />} />
+              <Route path='/history' element={<History user={user} />} />
+              <Route path='/habit/:date' element={<HabitEntry user={user} date={new Date().toISOString().slice(0, 10)} />}/>
             </Routes>
           </div>
           <Footer />

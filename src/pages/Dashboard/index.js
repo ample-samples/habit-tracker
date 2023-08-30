@@ -39,7 +39,7 @@ const options = {
       text: 'Chart.js Line Chart',
     },
   },
-};
+}
 
 export default function Dashboard() {
   const [ habits, setHabits ] = useState([])

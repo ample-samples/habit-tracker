@@ -3,11 +3,15 @@ import { useEffect, useState } from'react'
 import './style.css'
 
 const domain = process.env.REACT_APP_DB_DOMAIN
-const habits = await fetch(`${domain}/habits`).then(response => {
-  return response.json()
-})
-
+const email = null
 export default function HabitEntry () {
+  let habits
+
+  useEffect(async () => {
+    habits = await fetch(`${domain}/habits`).then(response => {
+      return response.json()
+    })
+  })
   const params = useParams()
 
   const todaysHabits = habits.find((item) => item.date === params.date )

@@ -1,6 +1,7 @@
 import { useState, useEffect } from'react'
 import { useNavigate } from'react-router-dom'
 import './style.css'
+const domain = process.env.REACT_APP_DB_DOMAIN
 
 export default function Login () {
 
@@ -26,20 +27,38 @@ const validateEmail = (email) => {
     if (validEmail) {
       return true
     } else {
-      alert("Please enter a valid email address")
       return false
     }
 }
 
-  const registerUser = (e) => {
+  const registerUser = async (e) => {
     e.preventDefault()
     const email = e.target.form[0].value
     const password = e.target.form[1].value
     const repeatPassword = e.target.form[2].value
 
-    if (!validateEmail(email)) return false 
-
-
+    if (!validateEmail(email)) {
+      alert("Please enter a valid email address")
+      return false 
+    }
+    if (password !== repeatPassword) {
+      alert("Passwords don't match")
+      return false
+    }
+    //send post to server to create a new user,
+    // if the user exists, display an alert
+    const options = {
+      headers: { 'Content-Type': 'application/json' },
+      method: 'POST',
+      body: JSON.stringify({email, password})
+    }
+    const response = await fetch(`${domain}/users/`, options).then((response) => {
+      return response.json()
+    })
+    // const habits = await fetch(`${domain}/habits`).then(response => {
+    //   return response.json()
+    // })
+    console.log(response)
   }
 
   const loginUser = (e) => {
