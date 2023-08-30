@@ -71,3 +71,10 @@ input {
 input::placeholder {
   color: var(--light-orange);
 }
+
+.login {
+  grid-area: main;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}

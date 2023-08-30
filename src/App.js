@@ -35,6 +35,7 @@ function App() {
           <div className="login">
             <Login setIsLoggedIn={setIsLoggedIn} />            
           </div>
+          <Footer />
         </div>
       </>
     )

@@ -1,2 +1,15 @@
 input {
 }
+
+.center {
+  translate: -85px;
+  margin: auto;
+}
+
+.center > p {
+  max-width: 168px;
+}
+
+form > * {
+  margin-bottom: 13px;
+}
