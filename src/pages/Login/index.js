@@ -3,7 +3,7 @@ import { useNavigate } from'react-router-dom'
 import './style.css'
 const domain = process.env.REACT_APP_DB_DOMAIN
 
-export default function Login () {
+export default function Login ({setIsLoggedIn, setUser}) {
 
 
   const [ showLoginPage, setShowLoginPage ] = useState(true)
@@ -61,8 +61,27 @@ const validateEmail = (email) => {
     console.log(response)
   }
 
-  const loginUser = (e) => {
+  const loginUser = async (e) => {
     e.preventDefault()
+    const email = e.target.form[0].value
+    const password = e.target.form[1].value
+    const options = {
+      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      body: JSON.stringify({email, password})
+    }
+    console.log({options})
+    const user = await fetch(`${domain}/login`, options).then((response) => {
+      return response.json()
+    })
+    console.log(user)
+    // let loginSuccess
+    // if(!loginSuccess) {
+    //   alert("incorrect email and password combination")
+    //   return false
+    // }
+    // setUser(user)
+    // setIsLoggedIn(true)
   }
 
   if (showLoginPage) {
@@ -83,7 +102,7 @@ const validateEmail = (email) => {
               <input type="password" name="password" id="password" />
             </label>
             <br />
-            <button>Login</button>
+            <button onClick={loginUser}>Login</button>
           </form>
           <p>Need an account?</p>
           <button onClick={setToRegister}>Register</button>

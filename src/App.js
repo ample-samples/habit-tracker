@@ -42,7 +42,7 @@ function App() {
       <>
         <div className="App">
           <div className="login">
-            <Login setIsLoggedIn={setIsLoggedIn} />            
+            <Login setIsLoggedIn={setIsLoggedIn} setUser={setUser} />            
           </div>
           <Footer />
         </div>
