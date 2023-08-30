@@ -17,6 +17,14 @@ export default function Login () {
     setShowLoginPage(true)
   }
 
+  const registerUser = (e) => {
+    e.preventDefault()
+  }
+
+  const loginUser = (e) => {
+    e.preventDefault()
+  }
+
   if (showLoginPage) {
     return(
       <>
@@ -26,13 +34,13 @@ export default function Login () {
             <label htmlFor="email">
               Email:
               <br />
-              <input type="email" name="email" />
+              <input type="email" name="email" id="email" />
             </label>
             <br />
             <label htmlFor="password">
               Password:
               <br />
-              <input type="password" name="password" />
+              <input type="password" name="password" id="password" />
             </label>
             <br />
             <button>Login</button>
@@ -48,16 +56,22 @@ export default function Login () {
         <div className="center">
           <h1>Register</h1>
           <form action="">
-            <label htmlFor="">
+            <label htmlFor="email">
               Email:
               <br />
-              <input type="email" name="email" />
+              <input type="email" name="email" id="email" />
             </label>
             <br />
-            <label htmlFor="">
+            <label htmlFor="password">
               Password:
               <br />
-              <input type="password" name="password" />
+              <input type="password" name="password" id="password" />
+            </label>
+            <br />
+            <label htmlFor="password-repeat">
+              Confirm password:
+              <br />
+              <input type="password" name="confirm-password" id="password-repeat" />
             </label>
             <br />
             <button>Register</button>
