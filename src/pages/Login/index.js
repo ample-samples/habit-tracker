@@ -4,6 +4,18 @@ import './style.css'
 
 export default function Login () {
   return(
-    <p>Hello</p>
+    <>
+      <form action="">
+        <label htmlFor="">
+          Email:
+          <input type="email" name="email" />
+        </label>
+        <label htmlFor="">
+          Password:
+          <input type="password" name="password" />
+        </label>
+        <button>Login</button>
+      </form>
+    </>
   )
 }

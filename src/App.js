@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 import { useState, useEffect } from'react'
 
 function App() {
-  const [ isLoggedIn, setIsLoggedIn ] = useState(true)
+  const [ isLoggedIn, setIsLoggedIn ] = useState(false)
 
   if(isLoggedIn){
     return (
@@ -27,7 +27,7 @@ function App() {
           <Footer />
         </div>
       </>
-    );
+    )
   } else {
     return (
       <>
@@ -37,9 +37,8 @@ function App() {
           </div>
         </div>
       </>
-    );
+    )
   }
-
 }
 
 export default App;
