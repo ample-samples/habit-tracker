@@ -14,25 +14,31 @@ export default function HabitEntry (user) {
       body: JSON.stringify({email, id: userId, date: params.date})
     }
     const todaysHabits = await fetch(`${domain}/habits/user`, options)
-      .then((response) => response.json())
+      .then((response) => {return response.json()})
     console.log("todays habits request", todaysHabits)
+    setTodaysHabits(todaysHabits)
     return todaysHabits
   }
+
+  const [ todaysHabits, setTodaysHabits ] = useState([])
   const [ formData, setFormData ] = useState({})
-  const [ todaysHabits, setTodaysHabits ] = useState({})
+
   useEffect(() => {
-  const todaysHabits = getTodaysHabits()
-    setTodaysHabits(todaysHabits)
-    setFormData(todaysHabits)
-    return () => {
-    }
+    console.log({todaysHabits})
+   const foundHabit = todaysHabits.find((habit) => {
+      return habit.date === params.date
+    })
+    console.log({foundHabit})
+    foundHabit && setFormData(foundHabit)
+  }, [todaysHabits])
+
+  useEffect(() => {
+    const todaysHabits = getTodaysHabits()
   }, [])
 
-  console.log({user})
-
-  console.log(email, userId)
-
-  // console.log(options.body)
+  useEffect(() => {
+    console.log({formData})
+  }, [formData])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -44,7 +50,9 @@ export default function HabitEntry (user) {
     e.preventDefault()
 
     console.log({ todaysHabits })
-    if (todaysHabits.length > 0) {
+    if (todaysHabits.find((habit)=> {
+      return habit.date === params.date
+    })) {
       const options = {
         headers: { 'Content-Type': 'application/json' },
         method: 'PATCH',
@@ -67,7 +75,6 @@ export default function HabitEntry (user) {
     <>
       <div className="habit-page">
         <h1>Habits for {params.date}</h1>
-        
         <form onChange={handleChange} onSubmit={handleSubmit} className="form">
           <label htmlFor="sleep">Sleep (hrs)</label><input type="text" name="sleep" id="sleep" placeholder={formData ? (formData.sleep) : '0'} />
           <label htmlFor="calories">Calories (kcal)</label><input type="text" name="calories" id="calories" placeholder={formData ? (formData.calories) : '0'} />

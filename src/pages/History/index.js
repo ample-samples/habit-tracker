@@ -26,8 +26,6 @@ export default function History(params) {
     getHabits()
   }, [])
 
-
-
   const navigate = useNavigate()
 
   const handleEdit = (e) => {

@@ -1,7 +1,5 @@
-.footer > a {
+.footer > * {
   justify-self: center;
+  display: inline-block;
 }
 
-.footer > div {
-  justify-content: center;
-}
