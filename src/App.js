@@ -12,7 +12,7 @@ import { useState, useEffect } from'react'
 function App() {
 
   const [ isLoggedIn, setIsLoggedIn ] = useState(false)
-  const [ user, setUser ] = useState({name: undefined, email: undefined})
+  const [ user, setUser ] = useState({})
 
   const checkToken = () => {
     const tokenIsValid = null

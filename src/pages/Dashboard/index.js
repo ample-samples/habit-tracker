@@ -41,17 +41,21 @@ const options = {
   },
 }
 
-export default function Dashboard() {
+export default function Dashboard(params) {
   const [ habits, setHabits ] = useState([])
   const [ chart1Labels, setChart1Labels ] = useState([])
 
   async function getHabits() {
+    const {userId, email} = params.user
     const domain = process.env.REACT_APP_DB_DOMAIN
-    const newHabits = await fetch(`${domain}/habits`)
-    .then(async response =>  {
-      const res = await response.json()
-      return res
-    })
+    const options = {
+      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      body: JSON.stringify({email, id: userId})
+    }
+    const newHabits = await fetch(`${domain}/habits/user`, options)
+      .then((response) => response.json())
+    console.log("habits request", newHabits)
     newHabits.sort((a, b) => a.date < b.date ? 1 : -1 )
     console.log({newHabits})
     setHabits(newHabits)

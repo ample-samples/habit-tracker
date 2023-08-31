@@ -7,6 +7,7 @@ export default function Login ({setIsLoggedIn, setUser}) {
 
 
   const [ showLoginPage, setShowLoginPage ] = useState(true)
+  const [ loginMessage, setLoginMessage ] = useState("")
 
   const setToRegister = (e) => {
     e.preventDefault()
@@ -24,11 +25,11 @@ const validateEmail = (email) => {
     .match(
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     )
-    if (validEmail) {
-      return true
-    } else {
-      return false
-    }
+  if (validEmail) {
+    return true
+  } else {
+    return false
+  }
 }
 
   const registerUser = async (e) => {
@@ -75,13 +76,14 @@ const validateEmail = (email) => {
       return response.json()
     })
     console.log(user)
-    // let loginSuccess
-    // if(!loginSuccess) {
-    //   alert("incorrect email and password combination")
-    //   return false
-    // }
-    // setUser(user)
-    // setIsLoggedIn(true)
+    setLoginMessage(user.message)
+    const loginSuccess = user.profile
+    if(!loginSuccess) {
+      alert("incorrect email and password combination")
+      return false
+    }
+    setUser(user.profile)
+    setIsLoggedIn(true)
   }
 
   if (showLoginPage) {
@@ -103,6 +105,7 @@ const validateEmail = (email) => {
             </label>
             <br />
             <button onClick={loginUser}>Login</button>
+            <div>{loginMessage}</div>
           </form>
           <p>Need an account?</p>
           <button onClick={setToRegister}>Register</button>

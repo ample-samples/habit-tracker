@@ -3,7 +3,7 @@ import { useNavigate } from'react-router-dom'
 import './style.css'
 
 
-export default function History(params) {
+export default function History() {
   const [ habits, setHabits ] = useState([])
 
   async function getHabits() {

@@ -1,65 +1,69 @@
+
 import { useParams } from'react-router-dom'
 import { useEffect, useState } from'react'
 import './style.css'
 
 const domain = process.env.REACT_APP_DB_DOMAIN
 
-export default function HabitEntry (user) {
+export default async function HabitEntry (props) {
   const params = useParams()
-  const { email, userId } = user.user
-  const getTodaysHabits = async () => {
-    const options = {
-      headers: { 'Content-Type': 'application/json' },
-      method: "POST",
-      body: JSON.stringify({email, id: userId, date: params.date})
-    }
-    const todaysHabits = await fetch(`${domain}/habits/user`, options)
-      .then((response) => response.json())
-    console.log("todays habits request", todaysHabits)
-    return todaysHabits
+  const { email, name } = props.user
+  const options = {
+    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    body: JSON.stringify({email})
   }
-  const [ formData, setFormData ] = useState({})
-  const [ todaysHabits, setTodaysHabits ] = useState({})
-  useEffect(() => {
-  const todaysHabits = getTodaysHabits()
+  console.log("options", {options})
+  const habits = await fetch(`${domain}/habits/user`, options).then((response) => {
+    return response.json()
+  })
+  console.log({ habits })
+
+  const [ todaysHabits, setTodaysHabits ] = useState(habits)
+
+  useEffect(async () => {
+    todaysHabits = habits.find((item) => item.date === params.date )
     setTodaysHabits(todaysHabits)
-    setFormData(todaysHabits)
-    return () => {
-    }
-  }, [])
+  }, [habits])
 
-  console.log({user})
+  const [ formData, setFormData ] = useState(todaysHabits)
 
-  console.log(email, userId)
-
-  // console.log(options.body)
+  if (!formData) {
+    setFormData({
+      date: new Date().toISOString().slice(0, 10),
+    })
+  }
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    console.log("Starting change")
+    console.log({formData})
+    console.log(e.target.name)
+    console.log(e.target.value)
+    const name = e.target.name
+    const value = e.target.value
     const newHabitsData = { ...formData.habits, [name]: value }
-    setFormData({...formData, habits: newHabitsData })
+    const objToSend = {...formData, habits: newHabitsData }
+    setFormData(objToSend)
+    console.log("Finished change")
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    console.log({ todaysHabits })
-    if (todaysHabits.length > 0) {
+    if (todaysHabits) {
       const options = {
         headers: { 'Content-Type': 'application/json' },
         method: 'PATCH',
-        body: JSON.stringify({ ...formData.habits, date: params.date, userId })
+        body: JSON.stringify({ ...formData.habits, date: params.date, userId: 1 })
       }
-      await fetch(`${domain}/habits/`, options)
-
+      const res = await fetch(`${domain}/habits/`, options)
     } else {
       const options = {
         headers: { 'Content-Type': 'application/json' },
         method: 'POST',
-        body: JSON.stringify({ ...formData.habits, date: params.date, userId})
+        body: JSON.stringify({ ...formData.habits, date: params.date, userId: 1})
       }
-      await fetch(`${domain}/habits/`, options)
-
+      const res = await fetch(`${domain}/habits/`, options)
     }
   }
 
@@ -69,6 +73,7 @@ export default function HabitEntry (user) {
         <h1>Habits for {params.date}</h1>
         
         <form onChange={handleChange} onSubmit={handleSubmit} className="form">
+          {console.log({ formData })}
           <label htmlFor="sleep">Sleep (hrs)</label><input type="text" name="sleep" id="sleep" placeholder={formData ? (formData.sleep) : '0'} />
           <label htmlFor="calories">Calories (kcal)</label><input type="text" name="calories" id="calories" placeholder={formData ? (formData.calories) : '0'} />
           <label htmlFor="meditation">Meditation (mins)</label><input type="text" name="meditation" id="meditation" placeholder={formData ? (formData.meditation) : '0'} />
