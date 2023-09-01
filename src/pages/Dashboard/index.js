@@ -112,7 +112,7 @@ export default function Dashboard(params) {
         count++
       }
     }
-    return sum/count
+    return Math.floor(sum/count)
   }
 
   const getCalorieAverage = () => {
@@ -124,7 +124,7 @@ export default function Dashboard(params) {
         count++
       }
     }
-    return sum/count
+    return Math.floor(sum/count)
   }
 
   return (
