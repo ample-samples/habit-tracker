@@ -3,22 +3,15 @@ import '../../App.css'
 import './style.css'
 import { LineChart } from '../../components/utils/chart'
 import { getCalorieAverage, getSleepAverage, getStepsAverage } from '../../components/utils/stats'
+import { getHabitsByUser } from '../../components/utils/fetch'
 
 export default function Dashboard(params) {
   const [ habits, setHabits ] = useState([])
   const [ chart1Labels, setChart1Labels ] = useState([])
 
   async function initHabits() {
-    const {userId, email} = params.user
-    const domain = process.env.REACT_APP_DB_DOMAIN
-    const options = {
-      headers: { 'Content-Type': 'application/json' },
-      method: "POST",
-      body: JSON.stringify({email, id: userId})
-    }
-    const newHabits = await fetch(`${domain}/habits/user`, options)
-      .then((response) => response.json())
-    newHabits.sort((a, b) => a.date < b.date ? 1 : -1 )
+    const { userId, email } = params.user
+    const newHabits = await getHabitsByUser(userId, email)
     setHabits(newHabits)
   }
 
