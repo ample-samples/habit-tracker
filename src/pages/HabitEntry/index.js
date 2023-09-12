@@ -30,7 +30,7 @@ export default function HabitEntry (user) {
     })
     console.log({foundHabit})
     foundHabit && setFormData(foundHabit)
-  }, [todaysHabits])
+  }, [todaysHabits, params.date])
 
   useEffect(() => {
     const todaysHabits = getTodaysHabits()
