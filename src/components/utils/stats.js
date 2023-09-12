@@ -7,7 +7,7 @@ export const getSleepAverage = (habits) => {
       count++
     }
   }
-  return sum/count
+  return (sum/count).toFixed(1)
 }
 
 export const getStepsAverage = (habits) => {
